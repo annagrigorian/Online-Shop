@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShop.Data;
+using OnlineShop.Models;
 
-namespace OnlineShop.Data.Migrations
+namespace OnlineShop.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190521225033_Initial")]
+    [DbContext(typeof(RegisteredPersonDbContext))]
+    [Migration("20190522182526_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,14 +135,14 @@ namespace OnlineShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineShop.Data.ApplicationUser", b =>
+            modelBuilder.Entity("OnlineShop.Models.RegisteredPerson", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Addresss");
+                    b.Property<int>("BloodGroup");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -151,6 +151,10 @@ namespace OnlineShop.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -198,7 +202,7 @@ namespace OnlineShop.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Data.ApplicationUser")
+                    b.HasOne("OnlineShop.Models.RegisteredPerson")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -206,7 +210,7 @@ namespace OnlineShop.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Data.ApplicationUser")
+                    b.HasOne("OnlineShop.Models.RegisteredPerson")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -219,7 +223,7 @@ namespace OnlineShop.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("OnlineShop.Data.ApplicationUser")
+                    b.HasOne("OnlineShop.Models.RegisteredPerson")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -227,7 +231,7 @@ namespace OnlineShop.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Data.ApplicationUser")
+                    b.HasOne("OnlineShop.Models.RegisteredPerson")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
